@@ -50,12 +50,16 @@ function numPressed(num) {
         }
         if (num1 === "0") {
             num1 = "";
+        } else if (num1 === "-0") {
+            num1 = "-";
         }
         num1 += num;
         updateNumberDisplay(num1);
     } else {
         if (num2 === " 0") {
             num2 = "";
+        } else if (num2 === "-0") {
+            num2 = "-";
         }
         num2 += num;
         updateNumberDisplay(num2);
@@ -114,7 +118,26 @@ function clearEntryPressed() {
 }
 
 function signPressed() {
-    console.log("+/-");
+    if(editNum1) {
+        if(num1.includes("-")) {
+            num1 = num1.replace("-", "");
+        } else {
+            num1 = "-" + num1;
+        }
+        updateNumberDisplay(num1);
+    } else {
+        if(num2.includes("-")) {
+            num2 = num2.replace("-", "");
+        } else {
+            if (num2 === " 0") {
+                num2 = "-0";
+            }
+            else {
+                num2 = "-" + num2;
+            }
+        }
+        updateNumberDisplay(num2);
+    }
 }
 
 function decimalPressed() {
