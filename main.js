@@ -90,8 +90,8 @@ function updateNumberDisplay(num) {
 }
 
 function updateFormulaDisplay(operation) {
-    const operatorDisplay = document.querySelector("#formulaValue")
-    operatorDisplay.textContent = operation;
+    const formulaDisplay = document.querySelector("#formulaValue")
+    formulaDisplay.textContent = operation;
 }
 
 function parseFormula(formula) {
