@@ -56,7 +56,13 @@ body {
     gap: 15px;
 }
 
-.btn {
+.num,
+.operation,
+.allClear,
+.clearEntry,
+.sign,
+.decimal,
+.equal {
     text-align: center;
     height: 100px;
     width: 100px;

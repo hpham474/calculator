@@ -33,69 +33,68 @@ function operate(a, b, operator) {
     }
 }
 
+function numPressed(num) {
+    console.log(num);
+}
+
+function operationPressed(operation) {
+    console.log(operation);
+}
+
+function allClearPressed() {
+    console.log("AC");
+}
+
+function clearEntryPressed() {
+    console.log("CE");
+}
+
+function signPressed() {
+    console.log("+/-");
+}
+
+function decimalPressed() {
+    console.log(".");
+}
+
+function equalPressed(num) {
+    console.log("=");
+}
+
+function updateNumberDisplay(num) {
+    const numberDisplay = document.querySelector("#inputValue");
+    numberDisplay.textContent = num;
+}
+
+function updateOperatorDisplay(operation) {
+    const operatorDisplay = document.querySelector("#operatorValue")
+    operatorDisplay.textContent += operation;
+}
+
 const buttons = document.querySelector("#buttons");
 buttons.addEventListener("click", (event) => {
     const target = event.target;
-    switch(target.id) {
-        case "key1":
-            console.log("1");
+    switch(target.className) {
+        case "num":
+            numPressed(target.id);
             break;
-        case "key2":
-            console.log("2");
+        case "operation":
+            operationPressed(target.id);
             break;
-        case "key3":
-            console.log("3");
+        case "allClear":
+            allClearPressed(target.id);
             break;
-        case "key4":
-            console.log("4");
+        case "clearEntry":
+            clearEntryPressed(target.id);
             break;
-        case "key5":
-            console.log("5");
+        case "sign":
+            signPressed(target.id);
             break;
-        case "key6":
-            console.log("6");
+        case "decimal":
+            decimalPressed(target.id);
             break;
-        case "key7":
-            console.log("7");
-            break;
-        case "key8":
-            console.log("8");
-            break;
-        case "key9":
-            console.log("9");
-            break;
-        case "key0":
-            console.log("0");
-            break;
-        case "key+":
-            console.log("+");
-            break;
-        case "key-":
-            console.log("-");
-            break;
-        case "key*":
-            console.log("*");
-            break;
-        case "key/":
-            console.log("/");
-            break;
-        case "key%":
-            console.log("%");
-            break;
-        case "key=":
-            console.log("=");
-            break;
-        case "key+/-":
-            console.log("+/-");
-            break;
-        case "key.":
-            console.log(".");
-            break;
-        case "keyAC":
-            console.log("AC");
-            break;
-        case "keyCE":
-            console.log("CE");
+        case "equal":
+            equalPressed(target.id);
             break;
     }
 });
@@ -103,5 +102,5 @@ buttons.addEventListener("click", (event) => {
 let num1 = 0;
 let num2 = 0;
 let operator = "";
-displayValue = "";
+let displayValue = "";
 
