@@ -42,6 +42,9 @@ function operate(a, b, operator) {
 }
 
 function numPressed(num) {
+    if (checkForInfinity()) {
+        return;
+    }
     if (editNum1) {
         if (formulaValue != "") {
             formulaValue = "";
@@ -67,6 +70,9 @@ function numPressed(num) {
 }
 
 function operationPressed(operation) {
+    if (checkForInfinity()) {
+        return;
+    }
     if (editNum1) {
         operatorValue = operation;
         if(formulaValue != "") {
@@ -118,6 +124,9 @@ function clearEntryPressed() {
 }
 
 function signPressed() {
+    if (checkForInfinity()) {
+        return;
+    }
     if(editNum1) {
         if(num1.includes("-")) {
             num1 = num1.replace("-", "");
@@ -141,6 +150,9 @@ function signPressed() {
 }
 
 function decimalPressed() {
+    if (checkForInfinity()) {
+        return;
+    }
     if (editNum1) {
         if(num1.includes(".")) {
             return;
@@ -163,6 +175,9 @@ function decimalPressed() {
 }
 
 function equalPressed(num) {
+    if (checkForInfinity()) {
+        return;
+    }
     if (editNum1) {
         return;
     }
@@ -189,6 +204,16 @@ function updateFormulaDisplay(formula) {
 function parseFormula(formula) {
     const formulaArr = formula.split(" ");
     return operate(Number(formulaArr[0]), Number(formulaArr[2]), formulaArr[1]);
+}
+
+function checkForInfinity() {
+    if (String(num1).includes("NaN")
+        || String(num1).includes("Infinity")
+        || String(num2).includes("NaN")
+        || String(num2).includes("Infinity")) {
+        allClearPressed();
+        return true;
+    }
 }
 
 const buttons = document.querySelector("#buttons");
