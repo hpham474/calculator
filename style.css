@@ -19,16 +19,26 @@ body {
 
 #display {
     display: flex;
+    flex-direction: column;
     align-items: flex-end;
     justify-content: flex-end;
     border: 1px solid black;
     margin: 27.5px;
     height: 157.5px;
     width: 445px;
+    gap: 40px;
 }
 
-#numbers {
-    margin: 20px;
+#answerValue {
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+}
+
+#inputValue {
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
 }
 
 #buttons {
