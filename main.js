@@ -52,15 +52,44 @@ function numPressed(num) {
 function operationPressed(operation) {
     if (editNum1) {
         operatorValue = operation;
+        if(formulaValue != "") {
+            formulaValue = "";
+        }
         formulaValue += `${num1} ${operatorValue}`;
         updateFormulaDisplay(formulaValue);
         updateNumberDisplay("0");
+        editNum1 = !editNum1;
+    } else {
+        /*
+        operatorValue = operation;
+        formulaValue = `${num1} ${operatorValue} ${num2} =`;
+        const result = parseFormula(formulaValue);
+        formulaValue = `${num1} ${operatorValue}`;
+        updateFormulaDisplay(formulaValue);
+        */
+        formulaValue = `${num1} ${operatorValue} ${num2} =`;
+        const result = parseFormula(formulaValue);
+
+        num2 = " 0";
+        num1 = result;
+        editNum1 = true;
+        updateNumberDisplay(num1);
+
+        operatorValue = operation;
+        formulaValue = `${num1} ${operatorValue}`;
+        updateFormulaDisplay(formulaValue);
+        editNum1 = !editNum1;
     }
-    editNum1 = !editNum1;
 }
 
 function allClearPressed() {
-    console.log("AC");
+    num1 = "0";
+    num2 = " 0";
+    operatorValue = "";
+    formulaValue = "";
+    editNum1 = true;
+    updateFormulaDisplay(formulaValue);
+    updateNumberDisplay(num1);
 }
 
 function clearEntryPressed() {
@@ -81,7 +110,12 @@ function equalPressed(num) {
     }
     formulaValue += ` ${num2} =`;
     updateFormulaDisplay(formulaValue);
-    parseFormula(formulaValue);
+    const result = parseFormula(formulaValue);
+
+    num2 = " 0";
+    num1 = result;
+    editNum1 = true;
+    updateNumberDisplay(num1);
 }
 
 function updateNumberDisplay(num) {
@@ -89,9 +123,9 @@ function updateNumberDisplay(num) {
     numberDisplay.textContent = num;
 }
 
-function updateFormulaDisplay(operation) {
+function updateFormulaDisplay(formula) {
     const formulaDisplay = document.querySelector("#formulaValue")
-    formulaDisplay.textContent = operation;
+    formulaDisplay.textContent = formula;
 }
 
 function parseFormula(formula) {
@@ -99,25 +133,20 @@ function parseFormula(formula) {
     const formulaArr = formula.split(" ");
     switch (formulaArr[1]) {
         case "+":
-            result = add(Number(formulaArr[0]), Number(formulaArr[2]));
+            return add(Number(formulaArr[0]), Number(formulaArr[2]));
             break;
         case "-":
-            result = subtract(Number(formulaArr[0]), Number(formulaArr[2]));
+            return subtract(Number(formulaArr[0]), Number(formulaArr[2]));
             break;
         case "*":
-            result = multiply(Number(formulaArr[0]), Number(formulaArr[2]));
+            return multiply(Number(formulaArr[0]), Number(formulaArr[2]));
             break;
         case "/":
-            result = divide(Number(formulaArr[0]), Number(formulaArr[2]));
+            return divide(Number(formulaArr[0]), Number(formulaArr[2]));
             break;
         case "%":
             break;
     }
-    
-    num2 = " 0";
-    editNum1 = !editNum1;
-    num1 = result;
-    updateNumberDisplay(num1);
 }
 
 const buttons = document.querySelector("#buttons");
