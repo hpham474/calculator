@@ -34,11 +34,29 @@ function operate(a, b, operator) {
 }
 
 function numPressed(num) {
-    console.log(num);
+    if (numSelector) {
+        if (num1 === "0") {
+            num1 = "";
+        }
+        num1 += num;
+        updateNumberDisplay(num1);
+    } else {
+        if (num2 === "0") {
+            num2 = "";
+        }
+        num2 += num;
+        updateNumberDisplay(num2);
+    }
 }
 
 function operationPressed(operation) {
-    console.log(operation);
+    if (numSelector) {
+        operatorValue = operation;
+        formulaValue += `${num1} ${operatorValue}`;
+        updateFormulaDisplay(formulaValue);
+        updateNumberDisplay("");
+    }
+    numSelector = !numSelector;
 }
 
 function allClearPressed() {
@@ -62,13 +80,13 @@ function equalPressed(num) {
 }
 
 function updateNumberDisplay(num) {
-    const numberDisplay = document.querySelector("#inputValue");
+    const numberDisplay = document.querySelector("#displayValue");
     numberDisplay.textContent = num;
 }
 
-function updateOperatorDisplay(operation) {
-    const operatorDisplay = document.querySelector("#operatorValue")
-    operatorDisplay.textContent += operation;
+function updateFormulaDisplay(operation) {
+    const operatorDisplay = document.querySelector("#formulaValue")
+    operatorDisplay.textContent = operation;
 }
 
 const buttons = document.querySelector("#buttons");
@@ -99,8 +117,11 @@ buttons.addEventListener("click", (event) => {
     }
 });
 
-let num1 = 0;
-let num2 = 0;
-let operator = "";
+let num1 = "0";
+let num2 = "0";
+let operatorValue = "";
+let formulaValue = "";
 let displayValue = "";
+let numSelector = true;     //true = num1 is being edited
+                            //false = num2 is being edited
 
