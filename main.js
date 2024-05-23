@@ -34,7 +34,7 @@ function operate(a, b, operator) {
 }
 
 function numPressed(num) {
-    if (numSelector) {
+    if (editNum1) {
         if (num1 === "0") {
             num1 = "";
         }
@@ -50,7 +50,7 @@ function numPressed(num) {
 }
 
 function operationPressed(operation) {
-    if (numSelector) {
+    if (editNum1) {
         operatorValue = operation;
         formulaValue += `${num1} ${operatorValue}`;
         updateFormulaDisplay(formulaValue);
@@ -122,6 +122,6 @@ let num2 = "0";
 let operatorValue = "";
 let formulaValue = "";
 let displayValue = "";
-let numSelector = true;     //true = num1 is being edited
-                            //false = num2 is being edited
+let editNum1 = true;    //true = num1 is being edited
+                        //false = num2 is being edited
 
