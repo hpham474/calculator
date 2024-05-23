@@ -35,6 +35,11 @@ function operate(a, b, operator) {
 
 function numPressed(num) {
     if (editNum1) {
+        if (formulaValue != "") {
+            formulaValue = "";
+            updateFormulaDisplay(formulaValue);
+            num1 = "";
+        }
         if (num1 === "0") {
             num1 = "";
         }
@@ -86,13 +91,17 @@ function allClearPressed() {
 }
 
 function clearEntryPressed() {
-    if (editNum1) {
-        num1 = "0";
-        updateNumberDisplay(num1);
-    }
-    else if (!editNum1) {
-        num2 = " 0";
-        updateNumberDisplay(num2);
+    if (num1 === "0" && num2 === " 0") {
+        allClearPressed();
+    } else {
+        if (editNum1) {
+            num1 = "0";
+            updateNumberDisplay(num1);
+        }
+        else if (!editNum1) {
+            num2 = " 0";
+            updateNumberDisplay(num2);
+        }
     }
 }
 
