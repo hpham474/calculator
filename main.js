@@ -17,16 +17,16 @@ function divide(a, b) {
 function operate(a, b, operator) {
     switch (operator) {
         case "+":
-            add(a,b);
+            return add(a,b);
             break;
         case "-":
-            subtract(a,b);
+            return subtract(a,b);
             break;
         case "*":
-            multiply(a,b);
+            return multiply(a,b);
             break;
         case "/":
-            divide(a,b);
+            return divide(a,b);
             break;
         default:
             break;
@@ -60,13 +60,6 @@ function operationPressed(operation) {
         updateNumberDisplay("0");
         editNum1 = !editNum1;
     } else {
-        /*
-        operatorValue = operation;
-        formulaValue = `${num1} ${operatorValue} ${num2} =`;
-        const result = parseFormula(formulaValue);
-        formulaValue = `${num1} ${operatorValue}`;
-        updateFormulaDisplay(formulaValue);
-        */
         formulaValue = `${num1} ${operatorValue} ${num2} =`;
         const result = parseFormula(formulaValue);
 
@@ -93,7 +86,14 @@ function allClearPressed() {
 }
 
 function clearEntryPressed() {
-    console.log("CE");
+    if (editNum1) {
+        num1 = "0";
+        updateNumberDisplay(num1);
+    }
+    else if (!editNum1) {
+        num2 = " 0";
+        updateNumberDisplay(num2);
+    }
 }
 
 function signPressed() {
@@ -129,24 +129,8 @@ function updateFormulaDisplay(formula) {
 }
 
 function parseFormula(formula) {
-    let result = 0; 
     const formulaArr = formula.split(" ");
-    switch (formulaArr[1]) {
-        case "+":
-            return add(Number(formulaArr[0]), Number(formulaArr[2]));
-            break;
-        case "-":
-            return subtract(Number(formulaArr[0]), Number(formulaArr[2]));
-            break;
-        case "*":
-            return multiply(Number(formulaArr[0]), Number(formulaArr[2]));
-            break;
-        case "/":
-            return divide(Number(formulaArr[0]), Number(formulaArr[2]));
-            break;
-        case "%":
-            break;
-    }
+    return operate(Number(formulaArr[0]), Number(formulaArr[2]), formulaArr[1]);
 }
 
 const buttons = document.querySelector("#buttons");
