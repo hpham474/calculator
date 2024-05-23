@@ -11,7 +11,7 @@ function multiply(a, b) {
 }
 
 function divide(a, b) {
-    return a - b;
+    return a / b;
 }
 
 function operate(a, b, operator) {
@@ -95,7 +95,29 @@ function updateFormulaDisplay(operation) {
 }
 
 function parseFormula(formula) {
-    console.log(formula);
+    let result = 0; 
+    const formulaArr = formula.split(" ");
+    switch (formulaArr[1]) {
+        case "+":
+            result = add(Number(formulaArr[0]), Number(formulaArr[2]));
+            break;
+        case "-":
+            result = subtract(Number(formulaArr[0]), Number(formulaArr[2]));
+            break;
+        case "*":
+            result = multiply(Number(formulaArr[0]), Number(formulaArr[2]));
+            break;
+        case "/":
+            result = divide(Number(formulaArr[0]), Number(formulaArr[2]));
+            break;
+        case "%":
+            break;
+    }
+    
+    num2 = " 0";
+    editNum1 = !editNum1;
+    num1 = result;
+    updateNumberDisplay(num1);
 }
 
 const buttons = document.querySelector("#buttons");
