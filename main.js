@@ -41,7 +41,7 @@ function numPressed(num) {
         num1 += num;
         updateNumberDisplay(num1);
     } else {
-        if (num2 === "0") {
+        if (num2 === " 0") {
             num2 = "";
         }
         num2 += num;
@@ -54,9 +54,9 @@ function operationPressed(operation) {
         operatorValue = operation;
         formulaValue += `${num1} ${operatorValue}`;
         updateFormulaDisplay(formulaValue);
-        updateNumberDisplay("");
+        updateNumberDisplay("0");
     }
-    numSelector = !numSelector;
+    editNum1 = !editNum1;
 }
 
 function allClearPressed() {
@@ -76,7 +76,12 @@ function decimalPressed() {
 }
 
 function equalPressed(num) {
-    console.log("=");
+    if (editNum1) {
+        return;
+    }
+    formulaValue += ` ${num2} =`;
+    updateFormulaDisplay(formulaValue);
+    parseFormula(formulaValue);
 }
 
 function updateNumberDisplay(num) {
@@ -87,6 +92,10 @@ function updateNumberDisplay(num) {
 function updateFormulaDisplay(operation) {
     const operatorDisplay = document.querySelector("#formulaValue")
     operatorDisplay.textContent = operation;
+}
+
+function parseFormula(formula) {
+    console.log(formula);
 }
 
 const buttons = document.querySelector("#buttons");
@@ -118,7 +127,7 @@ buttons.addEventListener("click", (event) => {
 });
 
 let num1 = "0";
-let num2 = "0";
+let num2 = " 0";
 let operatorValue = "";
 let formulaValue = "";
 let displayValue = "";
