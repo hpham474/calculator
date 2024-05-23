@@ -249,6 +249,7 @@ let num2 = " 0";
 let operatorValue = "";
 let formulaValue = "";
 let displayValue = "";
+let operatorHighlight = "";
 let editNum1 = true;    //true = num1 is being edited
                         //false = num2 is being edited
 
