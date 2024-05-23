@@ -11,7 +11,7 @@ function multiply(a, b) {
 }
 
 function divide(a, b) {
-    return a / b;
+    return Number((a / b).toFixed(4));
 }
 
 function modulus(a, b) {
@@ -141,7 +141,25 @@ function signPressed() {
 }
 
 function decimalPressed() {
-    console.log(".");
+    if (editNum1) {
+        if(num1.includes(".")) {
+            return;
+        }
+        else {
+            num1 += ".";
+        }
+        updateNumberDisplay(num1);
+    } else {
+        if(num2.includes(",")) {
+            return;
+        } else {
+            if(num2 === " 0") {
+                num2 = "0";
+            }
+            num2 += ".";
+        }
+        updateNumberDisplay(num2);
+    }
 }
 
 function equalPressed(num) {
