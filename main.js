@@ -221,25 +221,25 @@ buttons.addEventListener("click", (event) => {
     const target = event.target;
     switch(target.className) {
         case "num":
-            numPressed(target.id);
+            numPressed(target.textContent);
             break;
         case "operation":
-            operationPressed(target.id);
+            operationPressed(target.textContent);
             break;
         case "allClear":
-            allClearPressed(target.id);
+            allClearPressed(target.textContent);
             break;
         case "clearEntry":
-            clearEntryPressed(target.id);
+            clearEntryPressed(target.textContent);
             break;
         case "sign":
-            signPressed(target.id);
+            signPressed(target.textContent);
             break;
         case "decimal":
-            decimalPressed(target.id);
+            decimalPressed(target.textContent);
             break;
         case "equal":
-            equalPressed(target.id);
+            equalPressed(target.textContent);
             break;
     }
 });
@@ -249,7 +249,5 @@ let num2 = " 0";
 let operatorValue = "";
 let formulaValue = "";
 let displayValue = "";
-let operatorHighlight = "";
 let editNum1 = true;    //true = num1 is being edited
                         //false = num2 is being edited
-
