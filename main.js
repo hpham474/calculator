@@ -244,6 +244,37 @@ buttons.addEventListener("click", (event) => {
     }
 });
 
+window.addEventListener("keydown", (event) => {
+    let input = event.key;
+    if (!isNaN(event.key)) {
+        numPressed(event.key);
+    } else {
+        switch (event.key) {
+            case "+":
+            case "-":
+            case "*":
+            case "/":
+            case "%":
+                operationPressed(event.key);
+                break;
+            case "=":
+                equalPressed(event.key);
+                break;
+            case ".":
+                decimalPressed(event.key);
+                break;
+            case "Enter":
+                equalPressed(event.key);
+                break;
+            case "Backspace":
+                clearEntryPressed(event.key);
+                break;
+            default:
+                break;
+        }
+    }
+})
+
 let num1 = "0";
 let num2 = " 0";
 let operatorValue = "";
